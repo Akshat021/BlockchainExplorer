@@ -36,7 +36,7 @@ function App() {
     if (provider) block = await provider.getBlock(blockNumber);
     else {
       block = await fetch(
-        `http://localhost:5000/block/${event.target.elements.blockNumber.value}`
+        `https://blockchain-explorer-api.onrender.com/block/${event.target.elements.blockNumber.value}`
       );
       block = await block.json();
     }
@@ -52,7 +52,7 @@ function App() {
     if (provider) block = await provider.getBlock(blockHash);
     else {
       block = await fetch(
-        `http://localhost:5000/block/${event.target.elements.blockHash.value}`
+        `https://blockchain-explorer-api.onrender.com/block/${event.target.elements.blockHash.value}`
       );
       block = await block.json();
     }
@@ -68,10 +68,11 @@ function App() {
     if (provider) tx = await provider.getTransaction(txHash);
     else {
       tx = await fetch(
-        `http://localhost:5000/tx/${event.target.elements.transactionHash.value}`
+        `https://blockchain-explorer-api.onrender.com/tx/${event.target.elements.transactionHash.value}`
       );
       tx = await tx.json();
     }
+    console.log(tx);
     setTxdata(tx);
   };
 
@@ -137,7 +138,7 @@ function App() {
         <div>
           <h2>Transaction Data:</h2>
           <p>blockNumber: {txdata.blockNumber}</p>
-          <p>confirmations: {txdata.confirmations}</p>
+          <p>transactionIndex: {txdata.transactionIndex}</p>
           <p>Fee Recipient: {txdata.to}</p>
           <p>Nonce: {txdata.nonce}</p>
         </div>
